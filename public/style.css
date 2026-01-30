@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+}
+
+a {
+    color: white;
+}
+
+.credits {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    text-align: right;
+    font-family: sans-serif;
+}
