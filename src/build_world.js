@@ -1,12 +1,17 @@
 import * as THREE from "three"
 
+function add_model(scene, resources, key, material) {
+    const model = resources[key].scene.children[0]
+    model.traverse((mesh) => mesh.material = material)
+    scene.add(model)
+}
+
 export default (scene, resources) => {
-    const room = resources["roomModel.glb"].scene.children[0]
     const roomTexture = resources["roomTexture.jpg"]
     roomTexture.flipY = false
     const roomLightMap = resources["roomLightMap.jpg"]
     roomLightMap.flipY = false
-    room.material = new THREE.ShaderMaterial({
+    const roomMaterial = new THREE.ShaderMaterial({
         uniforms: {
             uBakedNightTexture: {value: roomTexture},
             uLightMapTexture: {value: roomLightMap},
@@ -40,21 +45,9 @@ export default (scene, resources) => {
                 gl_FragColor = vec4(bakedColor, 1.0);
             }`
     })
-    room.traverse((mesh) => mesh.material = room.material)
-    scene.add(room)
-
-    const chair = {}
-    chair.group = resources["chairModel.glb"].scene.children[0]
-    chair.group.traverse((mesh) => mesh.material = room.material)
-    scene.add(chair.group)
-
-    const lamp = resources["lampModel.glb"].scene.children[0]
-    lamp.material = new THREE.MeshBasicMaterial({color: "white"})
-    scene.add(lamp)
-    const pcScreen = resources["pcScreenModel.glb"].scene.children[0]
-    pcScreen.material = new THREE.MeshBasicMaterial({color: "black"})
-    scene.add(pcScreen)
-    const macScreen = resources["macScreenModel.glb"].scene.children[0]
-    macScreen.material = new THREE.MeshBasicMaterial({color: "black"})
-    scene.add(macScreen)
+    add_model(scene, resources, "roomModel.glb", roomMaterial)
+    add_model(scene, resources, "chairModel.glb", roomMaterial)
+    add_model(scene, resources, "lampModel.glb", new THREE.MeshBasicMaterial({color: "white"}))
+    add_model(scene, resources, "pcScreenModel.glb", new THREE.MeshBasicMaterial({color: "black"}))
+    add_model(scene, resources, "macScreenModel.glb", new THREE.MeshBasicMaterial({color: "black"}))
 }

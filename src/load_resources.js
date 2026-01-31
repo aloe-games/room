@@ -16,10 +16,7 @@ export default (assets, callback) => {
             return
         }
         let name = assets[Object.keys(loaded).length]
-        let loader = texture_loader
-        if (name.endsWith(".glb")) {
-            loader = gltf_loader
-        }
+        let loader = name.endsWith(".glb") ? gltf_loader : texture_loader
         loader.load("/assets/" + name, (value) => {
             loaded[name] = value
             load_next()
