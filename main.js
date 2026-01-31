@@ -1,7 +1,7 @@
 import * as THREE from "three"
-import {DRACOLoader} from "three/addons/loaders/DRACOLoader"
-import {GLTFLoader} from "three/addons/loaders/GLTFLoader"
-import {OrbitControls} from "three/addons/controls/OrbitControls"
+import {DRACOLoader} from "three/addons/loaders/DRACOLoader.js"
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js"
+import {OrbitControls} from "three/addons/controls/OrbitControls.js"
 
 function load_resources(assets, callback) {
     const texture_loader = new THREE.TextureLoader()
@@ -17,7 +17,7 @@ function load_resources(assets, callback) {
         }
         let name = assets[Object.keys(loaded).length]
         let loader = name.endsWith(".glb") ? gltf_loader : texture_loader
-        loader.load("/" + name, (value) => {
+        loader.load(name, (value) => {
             loaded[name] = value
             load_next()
         })
