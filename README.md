@@ -1,6 +1,6 @@
 ### Room
 
-Simplified and ported to Vite version of https://github.com/brunosimon/my-room-in-3d
+Simplified (under 100 lines) and ported to Vite version of https://github.com/brunosimon/my-room-in-3d
 
 ### Demo
 
