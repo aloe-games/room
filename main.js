@@ -10,6 +10,7 @@ function load_resources(assets, callback) {
     const gltf_loader = new GLTFLoader()
     gltf_loader.setDRACOLoader(draco_loader)
     let loaded = {}
+
     function load_next() {
         if (Object.keys(loaded).length >= assets.length) {
             callback(loaded)
@@ -22,6 +23,7 @@ function load_resources(assets, callback) {
             load_next()
         })
     }
+
     load_next()
 }
 
