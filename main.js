@@ -17,7 +17,7 @@ function load_resources(assets, callback) {
         }
         let name = assets[Object.keys(loaded).length]
         let loader = name.endsWith(".glb") ? gltf_loader : texture_loader
-        loader.load(name, (value) => {
+        loader.load("models/" + name, (value) => {
             loaded[name] = value
             load_next()
         })
