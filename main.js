@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import {OrbitControls} from "three/addons/controls/OrbitControls"
-import build_world from "./src/build_world"
-import load_resources from "./src/load_resources"
+import build_world from "./build_world"
+import load_resources from "./load_resources"
 
 const renderer = new THREE.WebGLRenderer({antialias: true})
 renderer.setSize(window.innerWidth, window.innerHeight)
